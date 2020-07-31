@@ -622,14 +622,14 @@ void() func_door =
 
 // #DOOR_START_OPEN is to allow an entity to be lighted in the closed position
 // but spawn in the open position
-	if (self.spawnflags & #DOOR_START_OPEN)
+	if ((self.spawnflags & #DOOR_START_OPEN) || gungame)
 	{
 		setorigin (self, self.pos2);
 		self.pos2 = self.pos1;
 		self.pos1 = self.origin;
 	}
 
-	self.state = #STATE_BOTTOM;
+	if (!gungame) self.state = #STATE_BOTTOM;
 
 	if (self.health)
 	{

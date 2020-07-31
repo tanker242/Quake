@@ -38,6 +38,14 @@ void (float startup) UpdateInfos =
 		allow_debug = 0;
 	}
 
+	st = infokey(world, "gungame"); // turn on gungame
+	if (st == "1" || st =="on")
+		gungame = 1;
+	else
+	{
+		gungame = 0;
+	}
+
 	st = infokey(world, "bodyque_size"); //
 	bodyque_size = stof(st);
 	if (bodyque_size < 4)
@@ -258,7 +266,7 @@ void(float tno, entity ignore) teamprefixsprint =
 	{
 		// Neo mode modification
 		if (Teammate(te, temp_e) && te != ignore)
-			sprint(te, #PRINT_HIGH, "Team ");
+			sprint(te, #PRINT_HIGH, "Team ");
 
 		te = find(te, classname, "player");
 	}
@@ -284,7 +292,7 @@ void(float tno, entity ignore, entity ignore2) teamprefixsprintbi =
 	{
 		if (Teammate(te, temp_e) && te != ignore && te != ignore2)
 		{
-			sprint(te, #PRINT_HIGH, "Team ");
+			sprint(te, #PRINT_HIGH, "Team ");
 		}
 
 		te = find(te, classname, "player");

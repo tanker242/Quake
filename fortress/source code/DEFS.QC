@@ -1167,7 +1167,7 @@ entity debug_target; // server dprints will go to this client too
 float allow_debug;
 //-------------------------//
 float allow_watermonsters; // if so, grunts and monsters can be in water, in check_contents ai.qc
-//float gungame;
+float gungame;
 float spec_menu;
 
 float bodyque_size;

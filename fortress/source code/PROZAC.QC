@@ -39,13 +39,13 @@ void() PrintProzacMOTD =
 void() PrintProzacIntro =
 {
 	if (!no_votemap && !no_punish)
-		sprint(self,#PRINT_HIGH,"\nVoting You can issue a vote by using the ¢VoteMap¢ and ¢Punish¢ aliases.\n");
+		sprint(self,#PRINT_HIGH,"\nVoting You can issue a vote by using the ¢VoteMap¢ and ¢Punish¢ aliases.\n");
 	else
 	{
 		if (!no_punish)
-			sprint(self,#PRINT_HIGH,"\nVoting You can issue a vote by using ¢VoteMap¢ alias.\n");
+			sprint(self,#PRINT_HIGH,"\nVoting You can issue a vote by using ¢VoteMap¢ alias.\n");
 		else if (!no_votemap)
-			sprint(self,#PRINT_HIGH,"\nVoting You can issue a vote by using ¢Punish¢ alias.\n");
+			sprint(self,#PRINT_HIGH,"\nVoting You can issue a vote by using ¢Punish¢ alias.\n");
 	}
 
 	//sprint (self, #PRINT_HIGH, #MSG_INFO, "\n",#MSG_OFTEN_CUTFVERSION, "\nŸ ", #MSG_CUTFVERSION, " Ÿ\n       Éîæïòíáôéïî èïíåğáçå:\n     www®telefragged®com¯shaka\nŸ\n\n");
@@ -56,4 +56,9 @@ void() PrintProzacIntro =
 
 	// for Neo mode
 	if (neo) { Neo_introducePlayer(); sprint(self, #PRINT_HIGH, "\n"); }
+
+	if(gungame) 
+	{
+		sprint(self, #PRINT_HIGH, "Zombie Mode Enabled\n");
+	}
 };
