@@ -1,0 +1,35 @@
+r_loadlit
+vid_reload
+r_loadlit
+/vid_restart 
+quit
+vid_reload
+rcon_password foobar
+rcon map 2fort5r
+r_loadlit
+rcon map bam4
+rcon map well6
+quit
+rcon_password foobar
+rcon serverinfo j on
+rcon map rock2
+rcon map bam4
+rcon map 4f4
+cfg_save
+quit
+rcon_password foobar
+name player
+name pl
+name player
+scout
+quit
+quit
+quit
+quit
+soldier
+kill
+cfg_save
+quit
+soldier
+kill
+quit
