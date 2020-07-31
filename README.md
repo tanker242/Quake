@@ -8,9 +8,27 @@ Kerney's QUAKE Release file with updated cfg and readme
 
 https://www.dropbox.com/s/w9tdifgaaeq6qy2/QUAKE%20Release.zip?dl=0
 
+---------------         Proposal              ---------------
+
+Gun Game Classic (Submitted version)
+Our group is creating a game mod for Quake called Gun Game which is based on the popular Counter-Strike mod. Gun Game is a classic mod you can add to your server that will provide players with hours of fun as you and your friends race to the final weapon and back stab your way to victory. In this mod players will not be overwhelmed by gun choices because they will have the opportunity to use every weapon. It’s a deathmatch type game where each player will be given the same stats, a gun, and a knife; however, once they’ve made a frag with the appropriate weapon they’ll progress to the next levels’ loadout until they are left with only a knife. Players will continue to compete until one player progresses through every level with each gun before claiming victory in the final level with a knife kill. BUT WAIT! Players can knock down their competition a peg by backstabbing them with the knife which forces them back to their previous gun. Gun Game will cause players to change tactics on the fly when their guns change, making for an exciting and unique deathmatch experience. 
+        	To make the game balanced and fun, the guns in the lower levels are generally stronger so it becomes progressively harder to frag people and progress through the game. In this mod players can catch up to others and prevent a one-sided game or snowballing player. This leaves the door open to high amounts of skill-based gameplay since players will need to kill someone with a hard-to-use weapon while trying to avoid enemies who want to backstab them with the knife. This will allow games to get more intense and competitive as the match progresses. Even though this game mode can get intense, it is not repetitive, and by starting off with stronger guns newer players can catch up and learn how to play the mod quickly. The mod will be built on the Custom Team Fortress code base to maintain compatibility but will disable most other features when the mod is enabled.
 
 
----------------Below is Kerney's Readme file---------------
+Add Gun Game to votemap (Hunter Osborn)
+Disable Starting Class/Custom menu (Aaron Fong)
+Mechanics for Weapon levels, de-level with knife kill, and misc gun modifications (Chris Vienna)
+Turn off Capture the Flag and Disable doors and backpacks (in the starting areas) (Edward Collins)
+Health regen after leveling up (Testing needed to verify balance) (Aaron Fong)
+Add global sound effect for level up, grenade level, knife level (Chris Vienna)
+Enable deathmatch style spawn points (Edward Collins)
+Select fun and competitive map rotation (Hunter Osborn)
+
+Group Members:
+Chris Vienna	Edward Collins
+Aaron Fong	Hunter Osborn
+
+--------------- Below is Kerney's Readme file ---------------
 How to mod CustomTF:
 
 1) The source code is in ./fortress/source code. Open that folder up and look at the files. 
