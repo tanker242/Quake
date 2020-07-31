@@ -589,7 +589,7 @@ void() Player_Menu =
 	else if (self.playerclass == #PC_UNDEFINED && (self.lives != 0))
 	{
 		//- OfN - stock_mode applies
-		if (stock_mode < 2) {
+		if (stock_mode < 2 && !gungame) {
 			self.current_menu = #MENU_CLASS;//-was commented
 			Menu_Class();//-was commented
 		}

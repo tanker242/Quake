@@ -154,6 +154,15 @@ void() UseSpecialSkill =
 // If self.impulse == 1, change to Civilian class
 void() TeamFortress_ChangeClass =
 {
+	if (gungame && (self.impulse <= #PC_CUSTOM + #TF_CHANGEPC) && (self.impulse >= #PC_SCOUT + #TF_CHANGEPC))
+	{
+
+		sprint (self, #PRINT_HIGH, "You cannot change classes in GunGame\n");
+		return;
+		if(self.playerclass != #PC_CIVILIAN)
+			self.playerclass = #PC_CIVILIAN;
+
+	}
 	local entity spot, te;
 	//local float tc;
 	local string st;
@@ -168,7 +177,7 @@ void() TeamFortress_ChangeClass =
 	if (self.playerclass != #PC_UNDEFINED && !(self.playerclass == #PC_CUSTOM && (self.done_custom & #CUSTOM_BUILDING)))
 	{
 		// In Deathmatch 3, you can change class after you die
-		if (deathmatch != 3)
+		if ((deathmatch != 3))
 			return;
 
 		// Civilian Teams can never change class
