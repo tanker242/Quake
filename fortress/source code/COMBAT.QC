@@ -261,6 +261,17 @@ void(entity targ, entity attacker) Killed =
 	self.th_die ();
 
 	self = oself;
+	if(gungame)
+	{
+
+		if((attacker.health + 15) <= 150)
+		{
+
+			attacker.health = attacker.health + 15;
+
+		}
+
+	}
 };
 
 
