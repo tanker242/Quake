@@ -271,6 +271,7 @@ void(entity targ, entity attacker) Killed =
 	else
 		attacker.health = 150;
 		
+}
 };
 
 
