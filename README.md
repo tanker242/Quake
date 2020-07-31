@@ -17,12 +17,19 @@ Our group is creating a game mod for Quake called Gun Game which is based on the
 
 Add Gun Game to votemap (Hunter Osborn)
 Disable Starting Class/Custom menu (Aaron Fong)
+
 Mechanics for Weapon levels, de-level with knife kill, and misc gun modifications (Chris Vienna)
+
 Turn off Capture the Flag and Disable doors and backpacks (in the starting areas) (Edward Collins)
+
 Health regen after leveling up (Testing needed to verify balance) (Aaron Fong)
+
 Add global sound effect for level up, grenade level, knife level (Chris Vienna)
+
 Enable deathmatch style spawn points (Edward Collins)
+
 Select fun and competitive map rotation (Hunter Osborn)
+
 
 Group Members:
 Chris Vienna	Edward Collins
