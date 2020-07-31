@@ -59,6 +59,6 @@ void() PrintProzacIntro =
 
 	if(gungame) 
 	{
-		sprint(self, #PRINT_HIGH, "Zombie Mode Enabled\n");
+		sprint(self, #PRINT_HIGH, "GunGame Mode Enabled\n");
 	}
 };
