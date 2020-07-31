@@ -33,3 +33,4 @@ quit
 soldier
 kill
 quit
+connect localhost
