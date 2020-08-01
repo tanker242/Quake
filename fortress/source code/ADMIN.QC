@@ -344,7 +344,7 @@ void(float targetteam) Admin_Assign =
 			self = oself;
 		}
 		// end Neo mod
-		if (!gungame) // Neo mode
+		/*if (!gungame) // Neo mode
 		{
 			oself = self;
 
@@ -357,7 +357,7 @@ void(float targetteam) Admin_Assign =
 			DetonateAllGunsForced();	
 			TeamFortress_DropItems();
 			self = oself;
-		}
+		}*/
 		// Set the player's color
 		stuffcmd(self.admin_kick, "color ");
 		tc = TeamFortress_TeamGetColor(targetteam) - 1;

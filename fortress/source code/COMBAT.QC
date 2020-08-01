@@ -796,7 +796,7 @@ void(entity targ, entity inflictor, entity attacker, float damage, float T_flags
 
 	if (targ.health < 1 && targ.health > 0) //WK Stop the scoreboard coming up
 		targ.health = 1;
-		
+			
 	if (targ.health <= 0) {
 
 		//WK 5-15-08 Martyr auto-triggers now... except if we shoot ourselves
