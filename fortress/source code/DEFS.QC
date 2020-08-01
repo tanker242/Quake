@@ -2172,7 +2172,7 @@ float		rj; 				// Rocket Jump Modifier
 
 // Class Details for CIVILIAN
 //#define PC_CIVILIAN_SKIN			22 
-#define PC_CIVILIAN_MAXHEALTH			100
+#define PC_CIVILIAN_MAXHEALTH			1
 #define PC_CIVILIAN_MAXSPEED			300
 //#define PC_CIVILIAN_MAXSTRAFESPEED	290
 #define PC_CIVILIAN_MAXARMOR			0
