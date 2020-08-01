@@ -1774,6 +1774,7 @@ float(entity attacker, entity targ) GetDamageOutFactor =
 	else if (neoLives == attacker)
 		factor = factor * neoDamageFactor;
 	// end Neo mod
+	return factor;
 };
 
 //==========================================================================

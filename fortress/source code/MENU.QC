@@ -583,7 +583,7 @@ void() Player_Menu =
 	}	 
 	
 	//WK ----------------
-	else if (!gungame && self.team_no == 0 && teamplay && (self.lives != 0)) //CV Adding !gungame to disable code when in gungame
+	else if (!gungame && self.team_no == 0 && teamplay && (self.lives != 0)) //CV Adding !gungame to disable code when in gungame if !gungame is not added and code is commented out then CuTF can not select teams
 	{
 		if (!gungame) {
 			self.current_menu = #MENU_TEAM;
