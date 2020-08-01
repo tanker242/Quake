@@ -270,7 +270,7 @@ void(entity targ, entity attacker) Killed =
 		}
 		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
 		{
-			attacker.current_weapon = #WEAP_KNIFE;
+			attacker.current_weapon = #WEAP_AXE;
 		}
 	}
 
