@@ -154,20 +154,11 @@ void() UseSpecialSkill =
 // If self.impulse == 1, change to Civilian class
 void() TeamFortress_ChangeClass =
 {
-	//if (gungame && (self.impulse <= #PC_CUSTOM + #TF_CHANGEPC) && (self.impulse >= #PC_SCOUT + #TF_CHANGEPC))
-	if (self.impulse == #PC_SCOUT + #TF_CHANGE_PC || self.impulse == #PC_SNIPER + #TF_CHANGE_PC || self.impulse == #PC_SOLDIER + #TF_CHANGE_PC || self.impulse == #PC_DEMOMAN + #TF_CHANGE_PC || self.impulse == #PC_MEDIC + #TF_CHANGE_PC || self.impulse == #PC_HVYWEAP + #TF_CHANGE_PC || self.impulse == #PC_PYRO + #TF_CHANGE_PC || self.impulse == #PC_SPY + #TF_CHANGE_PC || self.impulse == #PC_ENGINEER + #TF_CHANGE_PC || self.impulse == #PC_RANDOM + #TF_CHANGE_PC || self.impulse == #PC_CUSTOM + #TF_CHANGE_PC)
-	{
-		sprint (self, #PRINT_HIGH, "You cannot change classes in GunGame\n");
-		if(self.playerclass != #PC_CIVILIAN)
-			self.playerclass = #PC_CIVILIAN;
-		return;
-
-	}
 	local entity spot, te;
 	//local float tc;
 	local string st;
 	//local string scratch;
-
+	
 	//WK - Handle Custom Class Restarting
 	if (self.playerclass == #PC_CUSTOM && self.done_custom & #CUSTOM_BUILDING) {
 		DropToCustomClassGen(); //Comatose state
@@ -177,7 +168,7 @@ void() TeamFortress_ChangeClass =
 	if (self.playerclass != #PC_UNDEFINED && !(self.playerclass == #PC_CUSTOM && (self.done_custom & #CUSTOM_BUILDING)))
 	{
 		// In Deathmatch 3, you can change class after you die
-		if ((deathmatch != 3))
+		if (deathmatch != 3)
 			return;
 
 		// Civilian Teams can never change class
@@ -210,7 +201,7 @@ void() TeamFortress_ChangeClass =
 	}
 
 	// players must join a team, if teamplay is on
-	if (teamplay && self.team_no == 0) 
+	if (teamplay && self.team_no == 0 && !gungame) 
 	{
 		sprint(self, #PRINT_HIGH, "You must join a team first. \n");
 		return;
@@ -243,6 +234,7 @@ void() TeamFortress_ChangeClass =
 		self.playerclass = self.impulse - #TF_CHANGEPC;
 	else
 		self.playerclass = #PC_CIVILIAN;
+
 
 	self.nextpc = 0;
 
@@ -1641,6 +1633,7 @@ float(float pc) IsLegalClass =
 	// Spy may be turned off
 	if (spy_off == #TRUE && pc == #PC_SPY)
 		return #FALSE;
+
 
 	if (pc == #PC_SCOUT)
 		bit = #TF_ILL_SCOUT;

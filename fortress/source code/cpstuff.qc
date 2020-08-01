@@ -38,9 +38,12 @@ void (float startup) UpdateInfos =
 		allow_debug = 0;
 	}
 
-	st = infokey(world, "gungame"); // turn on gungame
+	st = infokey(world, "gungame"); //Enable gungame mode
 	if (st == "1" || st =="on")
+	{
 		gungame = 1;
+		deathmatch = 1;
+	}
 	else
 	{
 		gungame = 0;
@@ -199,7 +202,7 @@ void (float startup) UpdateInfos =
 		allow_watermonsters = 0;
 
 	st = infokey(world, "spec_menu"); //
-	if (st == "0" || st =="off")
+	if (st == "0" || st =="off" || neo)
 		spec_menu = 0;
 	else
 		spec_menu = 1;
@@ -1743,7 +1746,7 @@ void(float broadcastmsg) PrintGameSettings =
 
 float(entity attacker, entity targ) GetDamageOutFactor =
 {
-	local float factor;
+	local float factor; //Factor is how much we're multiplying our damage by
 	factor = 1;
 	
 	//WK 8/4/7 Changed the code so that only the best damage multiplier works now.
@@ -1763,7 +1766,7 @@ float(entity attacker, entity targ) GetDamageOutFactor =
 	if (!neo)
 	{
 		if (attacker.#runes & #RUNE_TRIAD)
-			if (factor < 3) factor = 3;
+			if (factor < 3) factor = 3; //factor is for damage multiplier, see line 1746
 	  
 		if (factor > #MAX_OUT_DMGFACTOR) //Not really needed now that they don't stack, but leave in for sanity
 			factor = #MAX_OUT_DMGFACTOR;
@@ -1771,8 +1774,6 @@ float(entity attacker, entity targ) GetDamageOutFactor =
 	else if (neoLives == attacker)
 		factor = factor * neoDamageFactor;
 	// end Neo mod
-
-	return factor;
 };
 
 //==========================================================================

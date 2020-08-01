@@ -502,7 +502,7 @@ void() item_tfgoal =
 	local vector temp2;
 	
 	// Neo mode: probably don't need any item_tfgoals in Neo mode (we'll see)
-	if (neo) return;
+	if (neo || gungame) return;
 
 	// Attackers Go Red mode -PZ
 	// don't spawn Red's flag in AGR

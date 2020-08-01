@@ -209,16 +209,16 @@ string(float tno) GetTeamName =
 //returns only the team color
 string(float tno) GetTrueTeamName =
 {
-	if (tno == 1)
-		return "Âìõå";
-	else if (tno == 2)
-		return "Òåä";
-	else if (tno == 3)
-		return "Ùåììï÷";
-	else if (tno == 4)
-		return "Çòååî";
-	else 
-		return "ERROR";
+		if (tno == 1)
+			return "Âìõå";
+		else if (tno == 2)
+			return "Òåä";
+		else if (tno == 3)
+			return "Ùåììï÷";
+		else if (tno == 4)
+			return "Çòååî";
+		else 
+			return "ERROR";
 };
 #endif
 
@@ -482,7 +482,7 @@ void() TeamFortress_CheckTeamCheats =
 	tTopColor=stof(st);
 
 	// Have they changed color?
-	if (self.team_no > 0 && teamplay > 0)
+	if (self.team_no > 0 && teamplay > 0 && !gungame)
 	{
 	#ifndef QUAKE_WORLD
 		// if they're a spy, check to see if they've changed colors manually

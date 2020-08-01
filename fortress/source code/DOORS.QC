@@ -305,7 +305,6 @@ void() door_touch =
 
 	other.items = other.items - self.items;
 	other.tf_items = other.tf_items | self.items;
-
 	if (neo || DoorShouldOpen()) // in Neo mode, doors always open for anyone
 	{
 		self.touch = SUB_Null;
@@ -313,6 +312,7 @@ void() door_touch =
 			self.enemy.touch = SUB_Null;	// get paired door
 		door_use ();
 	}
+
 };
 
 /*
@@ -629,7 +629,7 @@ void() func_door =
 		self.pos1 = self.origin;
 	}
 
-	if (!gungame) self.state = #STATE_BOTTOM;
+	if(!gungame) self.state = #STATE_BOTTOM;
 
 	if (self.health)
 	{

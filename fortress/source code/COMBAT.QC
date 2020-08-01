@@ -44,6 +44,8 @@ void(entity corpse, float damage, vector where, entity attacker, float directdmg
 //void(entity tfield, vector where, entity thing) FieldExplosion;
 //void(entity field) PutFieldWork;
 
+float() TeamFortress_TeamGetWinner;
+
 #ifndef COOP_MODE
 
 /*================
@@ -261,17 +263,6 @@ void(entity targ, entity attacker) Killed =
 	self.th_die ();
 
 	self = oself;
-	if (gungame){
-	if (attacker.health + 15 <= 150)
-	{
-
-		attacker.health = attacker.health + 15;
-
-	}
-	else
-		attacker.health = 150;
-		
-}
 };
 
 

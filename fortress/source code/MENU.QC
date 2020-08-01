@@ -348,8 +348,13 @@ void() Player_Menu =
 
 	if (self.current_menu == #MENU_INTRO)
 	{
-		Menu_Intro();
-		self.current_menu = #MENU_DEFAULT;
+		if(!gungame) Menu_Intro();
+		if(!gungame) self.current_menu = #MENU_DEFAULT;
+		else
+		{
+			self.gravity = 1;
+			ResetMenu();
+		}
 	}
 	else if (self.current_menu == #MENU_CLASSHELP)
 	{
@@ -578,13 +583,27 @@ void() Player_Menu =
 	}	 
 	
 	//WK ----------------
-	else if (self.team_no == 0 && teamplay && (self.lives != 0))
+	/*else if (self.team_no == 0 && teamplay && (self.lives != 0))
 	{
-		if (self.motd >= #MOTD_FINISHED) {
+		if (!gungame) {
 			self.current_menu = #MENU_TEAM;
 			Menu_Team();
 		}
-	}
+		else {
+			local float team1count, team2count;
+			team1count = TeamFortress_TeamGetNoPlayers(1);
+			if (self.team_no == 1) team1count = team1count - 1; //Don't count ourselves
+			team2count = TeamFortress_TeamGetNoPlayers(2);
+			if (self.team_no == 2) team2count = team2count - 1; //Don't count ourselves
+			if (team2count == 0) { //if no people in team 2
+				TeamFortress_TeamSet(2); //set as zombie
+			}
+			else {
+				TeamFortress_TeamSet(1); // if there are any zombies make them a player
+			}
+			self.gravity = 1;
+		}
+	}*/
 //WK Default to custom class gen - OfN - nope!
 	else if (self.playerclass == #PC_UNDEFINED && (self.lives != 0))
 	{
@@ -595,8 +614,9 @@ void() Player_Menu =
 		}
 		else
 		{
-			self.impulse = #PC_CUSTOM + #TF_CHANGEPC; //-wasnt commented
+			self.impulse = #PC_CIVILIAN + #TF_CHANGEPC; //-wasnt commented
 			TeamFortress_ChangeClass();//-wasnt commented
+			
 		}
 	}
 	else
@@ -613,7 +633,7 @@ void() Menu_Team =
 	else changing_team = 0;
 
 	should_autoteam = 0;
-	if (!NormalTF()) {	
+	if (!NormalTF() || gungame) {	
 		should_autoteam = 0; //Don't autoteam on nonstandard maps
 	} else {
 		team1count = TeamFortress_TeamGetNoPlayers(1);
@@ -636,7 +656,7 @@ void() Menu_Team =
 
 	//Autoteaming can be disabled entirely
 	//WK 1-19-09 Especially in Neo mode
-	if (infokey(world, "at") == "off" || infokey(world, "at") == "0" || neo)
+	if (infokey(world, "at") == "off" || infokey(world, "at") == "0" || neo) 
 		should_autoteam = 0;
 
 	// Autoassign player a team
@@ -755,6 +775,7 @@ void(float inp) Menu_Team_Input =
 
 	//WK 1-19-09 Disable autoteam in Neo mode
 	if (neo && inp == 5) inp = 0;
+
 
 	if (inp == 5) { // auto team
 		bprint(#PRINT_HIGH,self.netname);
@@ -3023,7 +3044,7 @@ void() Menu_EngineerFix_Tesla2 =
 	//l2 = ".. Cloaking Tesla            ­ 2u";
 	l2 = ".. Kevlar Armor              ­ 1u\n.. Blast Armor               ­ 1u\n.. Asbestos Armor            ­ 1u\n.. Make TeslaTurret(tm)      ­ 1u\n.. Improved Targeting System ­ 1u\n.. Cloaking Device           ­ 1u\n.. Repair and Recharge           \n.. Dismantle                     \n.. Îïôèéîç                       \n\n.. Normal Upgrades\n";
 	//l2 = ".. Kevlar Armor              ­ 1u\n.. Blast Armor               ­ 1u\n.. Asbestos Armor            ­ 1u\n.. Make TeslaTurret(tm)      ­ 1u\n.. Improved Targeting System ­ 1u\n\n.. Repair and Recharge           \n.. Dismantle                     \n.. Îïôèéîç                       \n\n.. Normal Upgrades\n";
-	CenterPrint4(self, "Tesla Íïäéæéãáôéïî Ìáâ: ",l1, " Upgrades Left\n\n€‚ Misc Tesla Upgrades €‚\n\n" ,l2);
+	CenterPrint4(self, "Tesla Íïäéæéãáôéïî Ìáâ: ",l1, " Upgrades Left\n\n€‚ Misc Tesla Upgrades €‚\n\n" ,l2);
 };
 void(float inp) Menu_EngineerFix_Tesla_Input2 =
 {

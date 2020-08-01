@@ -5,6 +5,9 @@
  ProZac Message Of The Day (MOTD) and un/related stuff :)
 =========================================================*/
 
+float (float tno) TeamFortress_TeamGetNoPlayers;
+float(float tno) TeamFortress_TeamSet;
+
 #define MSG_OFTEN_CUTFVERSION "Running progs build 272 Û02¯02¯2009Ý\n"
 
 #define MSG_INFO "\nType ¢cmd help¢ to see additional client commands.\n"
@@ -57,8 +60,8 @@ void() PrintProzacIntro =
 	// for Neo mode
 	if (neo) { Neo_introducePlayer(); sprint(self, #PRINT_HIGH, "\n"); }
 
-	if(gungame) 
+	if (gungame)
 	{
-		sprint(self, #PRINT_HIGH, "GunGame Mode Enabled\n");
+		sprint(self, #PRINT_HIGH, "Gun Game Enabled\n");
 	}
 };
