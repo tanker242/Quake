@@ -583,13 +583,13 @@ void() Player_Menu =
 	}	 
 	
 	//WK ----------------
-	else if (self.team_no == 0 && teamplay && (self.lives != 0))
+	else if (!gungame && self.team_no == 0 && teamplay && (self.lives != 0)) //CV Adding !gungame to disable code when in gungame
 	{
 		if (!gungame) {
 			self.current_menu = #MENU_TEAM;
 			Menu_Team();
 		}
-		/*else {
+		else {
 			local float team1count, team2count;
 			team1count = TeamFortress_TeamGetNoPlayers(1);
 			if (self.team_no == 1) team1count = team1count - 1; //Don't count ourselves
@@ -602,7 +602,7 @@ void() Player_Menu =
 				TeamFortress_TeamSet(1); // if there are any zombies make them a player
 			}
 			self.gravity = 1;
-		}*/
+		}
 	}
 //WK Default to custom class gen - OfN - nope!
 	else if (self.playerclass == #PC_UNDEFINED && (self.lives != 0))
