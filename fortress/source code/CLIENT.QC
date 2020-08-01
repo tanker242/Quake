@@ -3474,10 +3474,13 @@ void() PlayerPostThink =
 
 	//	Display MOTD
 	// Sync this with tforthlp.qc and menu.qc
-//	if (self.motd < #MOTD_FINISHED)
-//		TeamFortress_MOTD();
-//	else if (self.cheat_check == 0)
-//S		self.cheat_check = time + 10;
+	if(!gungame) 
+	{
+		if (self.motd < #MOTD_FINISHED)
+		TeamFortress_MOTD();
+		else if (self.cheat_check == 0)
+		self.cheat_check = time + 10;
+	}
 #ifdef STATUSBAR
 	/*else*/ if (self.current_menu == 0 && time > self.StatusRefreshTime && self.StatusBarSize != 0)
 	{
