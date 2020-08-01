@@ -209,16 +209,16 @@ string(float tno) GetTeamName =
 //returns only the team color
 string(float tno) GetTrueTeamName =
 {
-	if (tno == 1)
-		return "Âìõå";
-	else if (tno == 2)
-		return "Òåä";
-	else if (tno == 3)
-		return "Ùåììï÷";
-	else if (tno == 4)
-		return "Çòååî";
-	else 
-		return "ERROR";
+		if (tno == 1)
+			return "Âìõå";
+		else if (tno == 2)
+			return "Òåä";
+		else if (tno == 3)
+			return "Ùåììï÷";
+		else if (tno == 4)
+			return "Çòååî";
+		else 
+			return "ERROR";
 };
 #endif
 

@@ -770,13 +770,13 @@ float() Sentry_Fire =
 
 		// OfN - damage now depends on distance to target
 		if (therange == #RANGE_MELEE)
-			thedmg = 12;
+			thedmg = 9; // 12
 		else if (therange == #RANGE_NEAR)
-			thedmg = 6;
+			thedmg = 5; // 6
 		else if (therange == #RANGE_MID)
-			thedmg = 4;
+			thedmg = 3; // 4
 		else if (therange == #RANGE_FAR) // only circuit hacked sentries shot at this range
-			thedmg = 3;
+			thedmg = 2; // 3
 		else thedmg = 2; // this shouldnt happen ever (RANGE_VERYFAR)
 
 		// OfN - hacked sentries do more damage (improved circuits)

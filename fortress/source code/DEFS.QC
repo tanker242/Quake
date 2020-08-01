@@ -1,4 +1,4 @@
-/*
+/* MUIA WAS HERE
 ==============================================================================
 
 			SOURCE FOR GLOBALVARS_T C STRUCTURE
@@ -75,7 +75,6 @@ entity	msg_entity; 			// destination of single entity writes
 void()		main;						// only for testing
 
 void()		StartFrame;
-
 void()		PlayerPreThink;
 void()		PlayerPostThink;
 
@@ -368,14 +367,14 @@ void		end_sys_fields; 		// flag for structure dumping
 #define SVC_KILLEDMONSTER	27 
 #define SVC_FOUNDSECRET 	28 
 #define SVC_INTERMISSION	30 
-#define SVC_FINALE		31 
-#define SVC_CDTRACK 	32 
+#define SVC_FINALE			31 
+#define SVC_CDTRACK 		32 
 #define SVC_SELLSCREEN		33 
 
 #ifdef QUAKE_WORLD
 
 	#define SVC_SMALLKICK	 34
-	#define SVC_BIGKICK  35
+	#define SVC_BIGKICK  	 35
 	#define SVC_MUZZLEFLASH  39
 
 #endif
@@ -1065,6 +1064,13 @@ float(entity targ, entity inflictor) CanDamage;
 #define TF_TD_MELEE 	32	// WK 4/27/7 Melee Damage!
 #define TF_TD_NOSOUND		256 // Special damage. Makes no sound/painframe, etc
 
+//MENU Sounds
+
+#define MENUSOUND_BROWSE 1
+#define MENUSOUND_BUY	 2
+#define MENUSOUND_SELL	 3
+#define MENUSOUND_WRONG  4
+
 
 // Playerclass handling variables
 .float	maxammo_shells; 	// Class holding details
@@ -1165,9 +1171,13 @@ float no_detpush;
 //- REMOTE DEBUG GLOBALS -//
 entity debug_target; // server dprints will go to this client too
 float allow_debug;
+
+//Enable gun game mode
+float gungame;
+
 //-------------------------//
 float allow_watermonsters; // if so, grunts and monsters can be in water, in check_contents ai.qc
-float gungame;
+
 float spec_menu;
 
 float bodyque_size;
@@ -1703,52 +1713,52 @@ float		rj; 				// Rocket Jump Modifier
 #define RESPAWN_GUARD_TIME		5
 
 //JOBS AVAILABLE
-#define JOB_THIEF				1 //WK CAUTION: IF YOU EVER CHANGE THIS, CPQWSV THIEF CODE WILL BREAK
+#define JOB_THIEF			1 //WK CAUTION: IF YOU EVER CHANGE THIS, CPQWSV THIEF CODE WILL BREAK
 #define JOB_RUNNER			2
 #define JOB_WARLOCK 		4
 #define JOB_CHAPLAN 		8
-#define JOB_BERSERKER			16
-#define JOB_GUERILLA			32
-#define JOB_JUDOKA			64
+#define JOB_BERSERKER		16
+#define JOB_GUERILLA		32
+#define JOB_JUDOKA			64 //find replace all (works 70% of the time, every time)
 //- OfN - New jobs -
-#define JOB_ARMY				128
+#define JOB_ARMY			128 //vim ftw
 #define JOB_HACKER			256
 #define JOB_MARTYR			512
-#define JOB_CRUSADER			1024
+#define JOB_CRUSADER		1024
 //WK New jobs!
 #define JOB_TKD 			262144 // WK 4/27/7 Tae Kwon Do -- Boot to the Head!
-#define JOB_PSION				524288 // WK 4/27/7 Psionizes people! In air, drop them. On ground, pulls close.
+#define JOB_PSION			524288 // WK 4/27/7 Psionizes people! In air, drop them. On ground, pulls close.
 
 //This is the sum of all jobs above...
 #define JOB_ALL 			788479 //Not a job, used to simplify bit operators
 
 //STATES WE ARE IN FOR JOB
 //Every time we add one, make sure it gets reset in tfort.qc!
-#define JOB_ACTIVE		2048  //Job is 'on' like currently hiding //WK CAUTION: IF YOU EVER CHANGE THIS, CPQWSV THIEF CODE WILL BREAK
+#define JOB_ACTIVE			2048  //Job is 'on' like currently hiding //WK CAUTION: IF YOU EVER CHANGE THIS, CPQWSV THIEF CODE WILL BREAK
 #define JOB_FULL_HIDE		4096  //Job is in phase two of "hide"
 #define JOB_TIRED			8192  //Recovering from a sprint
 #define JOB_BLOODY_KNIFE	16384 //We've gone OJ on someone
-#define JOB_EXTRA1		65536 // Warlock, guerilla and army extra
-#define JOB_EXTRA2		131072// 2nd extra 
+#define JOB_EXTRA1			65536 // Warlock, guerilla and army extra
+#define JOB_EXTRA2			131072// 2nd extra 
 
 /*==================================================*/
 /* New Weapon Related Defines						*/
 /*==================================================*/
 // shots per reload 
-#define RE_SHOTGUN				8 
-#define RE_SUPER_SHOTGUN		16 // 8 shots
-#define RE_GRENADE_LAUNCHER 	6 
-#define RE_ROCKET_LAUNCHER		4 
-#define RE_DAEDALUS 		3 
-#define RE_LIGHT_ASSAULT		30 // WK 1/7/7 36 // was 40 
-#define RE_LASER_CANNON 			12 //WK 6/27/7 6
+#define RE_SHOTGUN				5  // 8
+#define RE_SUPER_SHOTGUN		10 // 16 // 8 shots
+#define RE_GRENADE_LAUNCHER 	4 // 6
+#define RE_ROCKET_LAUNCHER		2 // 4 
+#define RE_DAEDALUS 			3 
+#define RE_LIGHT_ASSAULT		40 // 30 // WK 1/7/7 36 // was 40 
+#define RE_LASER_CANNON 		9 // 12  //WK 6/27/7 6
 
 // reload times
-#define RE_SHOTGUN_TIME 		2 
+#define RE_SHOTGUN_TIME 			2 
 #define RE_SUPER_SHOTGUN_TIME		3 
 #define RE_GRENADE_LAUNCHER_TIME	4 
-#define RE_ROCKET_LAUNCHER_TIME 	5 
-#define RE_DAEDALUS_TIME		3 //WK 8/4/7 Faster reload ratio than RL
+#define RE_ROCKET_LAUNCHER_TIME 	4 
+#define RE_DAEDALUS_TIME			3 //WK 8/4/7 Faster reload ratio than RL
 #define RE_LIGHT_ASSAULT_TIME		3.2 //WK 1/7/7 3.3 // was 3.5
 #define RE_LASER_CANNON_TIME		3 //WK 6/27/7 1.5
 
@@ -1770,7 +1780,7 @@ float		rj; 				// Rocket Jump Modifier
 #define RE_ROCKET_LAUNCHER_TIME_EX	5
 //daedalus
 #define RE_DAEDALUS_EX				4
-#define RE_DAEDALUS_TIME_EX  4
+#define RE_DAEDALUS_TIME_EX 		4
 //grenade launcher
 #define RE_GRENADE_LAUNCHER_EX		8 // Original 6
 #define RE_GRENADE_LAUNCHER_TIME_EX 4
@@ -1923,8 +1933,8 @@ float		rj; 				// Rocket Jump Modifier
 #define PC_SCOUT_GRENADE_INIT_1 	2		// Number of grenades of Type 1 this class has when respawned
 #define PC_SCOUT_GRENADE_INIT_2 	4		// Number of grenades of Type 2 this class has when respawned
 #define PC_SCOUT_TF_ITEMS			#NIT_SCANNER | #NIT_AUTOSCANNER | #NIT_HOVER_BOOTS | #NIT_HOVER_BOOTS_UPGRADE  // OfN Now with hover boots
-#define PC_SCOUT_CUTFITEMS				#CUTF_HOLO | #CUTF_AIRFISTUPGRADE // | #CUTF_CYBERAUG // OfN Scouts with holo now and cyberaug!
-#define PC_SCOUT_JOB			#JOB_THIEF
+#define PC_SCOUT_CUTFITEMS			#CUTF_HOLO | #CUTF_AIRFISTUPGRADE // | #CUTF_CYBERAUG // OfN Scouts with holo now and cyberaug!
+#define PC_SCOUT_JOB				#JOB_RUNNER
 
 //#define PC_SCOUT_MOTION_MIN_I 		0.5 	// < Short range
 //#define PC_SCOUT_MOTION_MIN_MOVE		50		// Minimum vlen of player velocity to be picked up by motion detector
@@ -2162,16 +2172,16 @@ float		rj; 				// Rocket Jump Modifier
 
 // Class Details for CIVILIAN
 //#define PC_CIVILIAN_SKIN			22 
-#define PC_CIVILIAN_MAXHEALTH			90
-#define PC_CIVILIAN_MAXSPEED			290
-//#define PC_CIVILIAN_MAXSTRAFESPEED		290
+#define PC_CIVILIAN_MAXHEALTH			150
+#define PC_CIVILIAN_MAXSPEED			420
+//#define PC_CIVILIAN_MAXSTRAFESPEED	290
 #define PC_CIVILIAN_MAXARMOR			75
 #define PC_CIVILIAN_INITARMOR			75 
 #define PC_CIVILIAN_MAXARMORTYPE		0.3
 #define PC_CIVILIAN_INITARMORTYPE		0.3
 //#define PC_CIVILIAN_ARMORCLASSES		0		
 #define PC_CIVILIAN_INITARMORCLASS		0
-#define PC_CIVILIAN_WEAPONS 			#WEAP_AXE | #WEAP_SUPER_SHOTGUN | #WEAP_SHOTGUN
+#define PC_CIVILIAN_WEAPONS 			#WEAP_AXE //| #WEAP_SUPER_SHOTGUN | #WEAP_SHOTGUN
 #define PC_CIVILIAN_MAXAMMO_SHOT		50
 #define PC_CIVILIAN_MAXAMMO_NAIL		0 
 #define PC_CIVILIAN_MAXAMMO_CELL		0 
@@ -2180,12 +2190,12 @@ float		rj; 				// Rocket Jump Modifier
 #define PC_CIVILIAN_INITAMMO_NAIL		0 
 #define PC_CIVILIAN_INITAMMO_CELL		0 
 #define PC_CIVILIAN_INITAMMO_ROCKET 	0 
-#define PC_CIVILIAN_GRENADE_TYPE_1		#GR_TYPE_NORMAL
+#define PC_CIVILIAN_GRENADE_TYPE_1		0
 #define PC_CIVILIAN_GRENADE_TYPE_2		0
-#define PC_CIVILIAN_GRENADE_INIT_1		2	 
+#define PC_CIVILIAN_GRENADE_INIT_1		0	 
 #define PC_CIVILIAN_GRENADE_INIT_2		0	 
 #define PC_CIVILIAN_TF_ITEMS			0 
-#define PC_CIVILIAN_JOB 			#JOB_THIEF
+#define PC_CIVILIAN_JOB 				#JOB_RUNNER
 #define PC_CIVILIAN_CUTFITEMS			#CUTF_KNIFE
 
 

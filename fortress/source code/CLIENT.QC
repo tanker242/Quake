@@ -218,7 +218,8 @@ void() autoteam_think =
 //	if (!chris)
 		PrematchBegin();
 	
-	toggleflags = toggleflags | #TFLAG_AUTOTEAM;
+	if (!gungame) toggleflags = toggleflags | #TFLAG_AUTOTEAM;
+	
 	dremove(self);
 };
 
@@ -3804,7 +3805,7 @@ void() PlayerQuit =
 		{
 			if (current_voteent.g_a == #PUNISH_BAN)
 			{
-				bprint(#PRINT_HIGH,"Votingç ");
+				bprint(#PRINT_HIGH,"Votingù ");
 				bprint(#PRINT_HIGH,self.netname);
 				bprint(#PRINT_HIGH," leaves the server but votes to ban him may continue..\n"); // only IP in fact, but better to not inform every1 about it, dont ya think?
 								
@@ -3819,7 +3820,7 @@ void() PlayerQuit =
 			}
 			else if (current_voteent.g_a == #PUNISH_MUTE || current_voteent.g_a == #PUNISH_CUFF)
 			{
-				bprint(#PRINT_HIGH,"Votingç ");
+				bprint(#PRINT_HIGH,"Votingù ");
 				bprint(#PRINT_HIGH,self.netname);
 				bprint(#PRINT_HIGH," leaves the server, but keeping client data\n"); // only IP in fact, but better to not inform every1 about it, dont ya think?
 								
@@ -3830,7 +3831,7 @@ void() PlayerQuit =
 			}
 			else // anything else should fail (kick and curse)
 			{
-				bprint(#PRINT_HIGH,"Votingç Punishment failed. User ");
+				bprint(#PRINT_HIGH,"Votingù Punishment failed. User ");
 				bprint(#PRINT_HIGH,self.netname);
 				bprint(#PRINT_HIGH," has left the server\n");
 

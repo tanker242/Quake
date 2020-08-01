@@ -158,7 +158,7 @@ void() TeamFortress_ChangeClass =
 	//local float tc;
 	local string st;
 	//local string scratch;
-
+	
 	//WK - Handle Custom Class Restarting
 	if (self.playerclass == #PC_CUSTOM && self.done_custom & #CUSTOM_BUILDING) {
 		DropToCustomClassGen(); //Comatose state
@@ -234,6 +234,7 @@ void() TeamFortress_ChangeClass =
 		self.playerclass = self.impulse - #TF_CHANGEPC;
 	else
 		self.playerclass = #PC_CIVILIAN;
+
 
 	self.nextpc = 0;
 
@@ -1632,6 +1633,7 @@ float(float pc) IsLegalClass =
 	// Spy may be turned off
 	if (spy_off == #TRUE && pc == #PC_SPY)
 		return #FALSE;
+
 
 	if (pc == #PC_SCOUT)
 		bit = #TF_ILL_SCOUT;

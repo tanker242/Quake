@@ -585,6 +585,7 @@ void() worldspawn =
 
 void(float tno, float scoretoadd) TeamFortress_TeamIncreaseScore;
 
+
 void() StartFrame =
 {
 	teamplay = cvar("teamplay");
@@ -601,6 +602,7 @@ void() StartFrame =
 		Neo_calcNeoFactors();
 		Neo_errorCheck();
 	}
+
 
 	framecount = framecount + 1;
 };

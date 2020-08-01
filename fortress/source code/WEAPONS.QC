@@ -5575,7 +5575,7 @@ void() DeadImpulses =
 	}
 	//WK 5-15-08 - Add in TF2.6 support for changeteam
 	//WK 12-4-08 - Not in neo mode
-	if (self.impulse == #TF_CHANGETEAM && !neo) {
+	if (self.impulse == #TF_CHANGETEAM && !neo && !gungame) {
 			self.current_menu = #MENU_TEAM;
 			self.menu_count = #MENU_REFRESH_RATE - 5;
 	}
@@ -5836,7 +5836,8 @@ void() W_WeaponFrame =
 			{
 				if (self.team_no == 0 && teamplay && (self.lives != 0) && (time < 300 || TeamFortress_TeamGetNoPlayers(1) == TeamFortress_TeamGetNoPlayers(2))) //WK 5-15-08 Don't allow this to bypass team menu autoteaming 
 				{
-					Menu_Team_Input(self.impulse);
+					if (gungame == 0)
+						Menu_Team_Input(self.impulse);
 				}
 				/* WK Disable picking normal class menu
 				else if (self.playerclass == #PC_UNDEFINED && (self.lives != 0))

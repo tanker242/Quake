@@ -5,6 +5,7 @@
 =========================================================//
  All the stuff related to the customizing menu is here
  Moved to its own file for organization purposes
+float(float tno) TeamFortress_TeamGetNoPlayers;
  Here now single price definitions also.. finally! =)
 =========================================================*/
 
@@ -454,7 +455,7 @@ void() Menu_SniperWeapon =
 	else
 		msg_custom = strcat(msg_custom,"Type 'Óåôéîæï è Ïææ' to disable help\n");
 
-	centerprint(self,"œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Sniper Weapon Menu œ‹\n\n",l1,l2,l3,l4,temp,msg_custom);
+	centerprint(self,"œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Sniper Weapon Menu œ‹\n\n",l1,l2,l3,l4,temp,msg_custom);
 };													   
 
 void(float inp) Menu_SniperWeapon_Input =
@@ -587,7 +588,7 @@ void() Menu_RocketWeapon =
 	l4 = ConstructMenuItemStr(7,#STR_HEAT_SEEKING,#COST_HEAT_SEEKING,self.cutf2_items,#CUTF2_HEAT_SEEKING);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ   Rocket Weapons   œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ   Rocket Weapons   œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
 };
 
 void(float inp) Menu_RocketWeapon_Input =
@@ -717,7 +718,7 @@ void() Menu_ShotgunWeapon =
 	l4 = "\n";
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ  Shotgun Weapons   œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ  Shotgun Weapons   œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
 };
 
 void(float inp) Menu_ShotgunWeapon_Input =
@@ -807,7 +808,7 @@ void() Menu_OtherWeapon =
 	l4 = ConstructMenuItemStr(7,#STR_NAILGUN,#COST_NAILGUN,self.weapons_carried,#WEAP_NAILGUN);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ    More Weapons    œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ    More Weapons    œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
 };
 
 void(float inp) Menu_OtherWeapon_Input =
@@ -906,7 +907,7 @@ void() Menu_Tools =
 	l4 = ConstructMenuItemStr(7,#STR_HOOK,#COST_HOOK,self.weapons_carried,#WEAP_HOOK);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Tools and Mobility œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Tools and Mobility œ‹\n\n",l1,l2,l3,l4,temp," dollars left\n");
 };
 
 void(float inp) Menu_Tools_Input =
@@ -1065,7 +1066,7 @@ void() Menu_Legs =
 	l4 = ConstructMenuSpeedStr(7,#STR_SPEED7,0);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Leg Enhancements   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Leg Enhancements   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };							  
 
 void(float inp) Menu_Legs_Input =
@@ -1121,8 +1122,6 @@ void(float inp) Menu_Legs_Input =
 			PrintMoney();
 			Menu_Legs();
 		}
-		else
-			PrintNotEnoughMoney(#COST_SPEED1);
 	}
 	if (inp == 2) {
 		if (self.money >= #COST_SPEED2) {
@@ -1236,7 +1235,7 @@ l3 =	"* .. 300 Red         ­ 4600\n";
 
 l4 =	"  .. +50 Health      ­ 1000\n  .. +5 Health       ­  100\n.. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n";
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Armor and Health   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Armor and Health   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };
 
 void(float inp) Menu_Health_Input =
@@ -1442,7 +1441,6 @@ void(float inp) Menu_Health_Input =
 	if (inp == 10) {
 		DropFromCustomClassGen();
 	}
-
 	self.impulse = 0;
 };
 
@@ -1475,7 +1473,7 @@ void() Menu_Health =
 	l4 = ConstructMenuHPStr(7,#STR_HP7,#COST_HP7);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Armor and Health   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Armor and Health   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };
 
 float(float numitem) GetHPCost =
@@ -1690,7 +1688,7 @@ void() Menu_Armor  =
 	l4 = ConstructMenuItemStr(7,#STR_ARMOR_PIERCING,#COST_ARMOR_PIERCING,self.cutf2_items,#CUTF2_ARMOR_PIERCING);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Special Armor Menu œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Special Armor Menu œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };
 
 void(float inp) Menu_Armor_Input =
@@ -1783,7 +1781,7 @@ void() Menu_Special =
 	l4 = "\n";
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Special Items      œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Special Items      œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
 };
 
 void(float inp) Menu_Special_Input =
@@ -1855,7 +1853,9 @@ void(float inp) Menu_Special_Input =
 	if (inp == 9) {
 		CuTFMenuSound(#MENUSOUND_BROWSE);
 		self.current_menu = #MENU_ENGINEERING;
-		Menu_Engineering(); 	   
+		else self.current_menu = #MENU_GREN1;
+		Menu_Engineering();
+		else Menu_Gren1();	   
 	}
 	if (inp == 10) {
 		DropFromCustomClassGen();
@@ -1891,7 +1891,7 @@ void() Menu_Engineering =
 	l4 = ConstructMenuItemStr(7,#STR_TELEPORTER,#COST_TELEPORTER,self.tf_items,#NIT_TELEPORTER);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Engineering Items  œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Engineering Items  œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };
 void(float inp) Menu_Engineering_Input =
 {
@@ -2032,7 +2032,7 @@ void() Menu_Special2 =
 
 	l4 = "\n.. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n";
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Engineering Items2 œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Engineering Items2 œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
 };
 
 void(float inp) Menu_Special2_Input =
@@ -2142,7 +2142,7 @@ void() Menu_Gren1 =
 	l4 = ConstructMenuGrenStr(7,#STR_GR_MIRV,#COST_GR_MIRV,#GR_TYPE_MIRV);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 	
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Grenades ­ Combat  œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Grenades ­ Combat  œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
 };
 
 void(float inp) Menu_Gren1_Input =
@@ -2223,7 +2223,9 @@ void(float inp) Menu_Gren1_Input =
 	{
 		CuTFMenuSound(#MENUSOUND_BROWSE);
 		self.current_menu = #MENU_SPECIAL2;
-		Menu_Special2();		
+		else self.current_menu = #MENU_SPECIAL;
+		Menu_Special2();
+		else Menu_Special;		
 	}
 	if (inp == 9)
 	{
@@ -2265,7 +2267,7 @@ void() Menu_Gren2 =
 	l4 = ConstructMenuGrenStr(7,#STR_GR_KRAC,#COST_GR_KRAC,#GR_TYPE_KRAC);
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Grenades ­ Utility œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Grenades ­ Utility œ‹\n\n",l1,l2,l3,l4, temp," dollars left\n");
 };
 
 void(float inp) Menu_Gren2_Input =
@@ -2389,7 +2391,7 @@ void() Menu_Profession =
 	l4 = ConstructMenuJobStr(7,#STR_JUDOKA,#JOB_JUDOKA,#COST_JUDOKA,0,0,"","");
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 	
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Skilled Profession œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n\nUse ÓËÉÌÌ to trigger ability\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Skilled Profession œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n\nUse ÓËÉÌÌ to trigger ability\n");
 
 };
 void(float inp) Menu_Profession_Input =
@@ -2405,7 +2407,8 @@ void(float inp) Menu_Profession_Input =
 			}
 		}
 		else {
-			BuyJob(#COST_THIEF,#JOB_THIEF);
+			//BuyJob(#COST_THIEF,#JOB_THIEF);
+			
 		}
 		Menu_Profession();
 	}
@@ -2505,7 +2508,7 @@ void() Menu_Profession2 =
 
 	l4 = "\n.. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n";
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ More Professions   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n\nUse ÓËÉÌÌ to trigger ability\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ More Professions   œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n\nUse ÓËÉÌÌ to trigger ability\n");
 };
 
 void(float inp) Menu_Profession2_Input =
@@ -2605,7 +2608,7 @@ void() Menu_Proficiency =
 	l4 = "\n";
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Proficiencies      œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Proficiencies      œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 }; 
 
 void(float inp) Menu_Proficiency_Input =
@@ -2693,7 +2696,7 @@ void() Menu_Option =
 	l4 = "\n";
 	l4 = strcat(l4,".. Ğòåö    \n.. Îåøô    \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Optional Equipment œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Optional Equipment œ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };
 void(float inp) Menu_Option_Input =
 {
@@ -2774,7 +2777,7 @@ void() Menu_Knocktation =
 	l4 = "\n";
 	l4 = strcat(l4,".. Ğòåö    \n..         \n.. Äïîå!   \n");
 
-	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Knocktation Optionsœ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
+	centerprint(self, "œ‹ Cõsôoíiúe Ùïõòóåìæ ‹œ\n‹œ Knocktation Optionsœ‹\n\n", l1,l2,l3,l4, temp," dollars left\n");
 };
 void(float inp) Menu_Knocktation_Input =
 {

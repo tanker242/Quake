@@ -44,6 +44,8 @@ void(entity corpse, float damage, vector where, entity attacker, float directdmg
 //void(entity tfield, vector where, entity thing) FieldExplosion;
 //void(entity field) PutFieldWork;
 
+float() TeamFortress_TeamGetWinner;
+
 #ifndef COOP_MODE
 
 /*================

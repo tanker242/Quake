@@ -1300,7 +1300,7 @@ void() ReteamTimer =
 */
 	
 	//Disable the Reteamer if this is a special map (like hunted or whatever) or we're in neo mode
-	if (!teamplay || neo || number_of_teams != 2 || (team1maxplayers > 0 && team1maxplayers < 32) || (team2maxplayers > 0 && team2maxplayers < 32)) {	
+	if (!teamplay || neo || gungame || number_of_teams != 2 || (team1maxplayers > 0 && team1maxplayers < 32) || (team2maxplayers > 0 && team2maxplayers < 32)) {	
 		bprint (#PRINT_MEDIUM, "Reteam Timer Disabled Due to Nonstandard Map\n");
 		dremove(self);
 		return;
