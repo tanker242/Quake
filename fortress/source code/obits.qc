@@ -945,7 +945,7 @@ void(entity targ, entity attacker) ClientObituary =
 			else if (teamplay && Teammate(targ, attacker))
 			{
 				// killed a team member
-				if (Teammate(targ, attacker) )
+				if (Teammate(targ, attacker) && !gungame)
 					Give_Frags_Out(attacker, attacker, -1, 0, 1, 1, 0);
 				else
 					Give_Frags_Out(attacker, attacker, 1, 0, 1, 1, 0);

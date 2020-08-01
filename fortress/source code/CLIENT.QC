@@ -1529,7 +1529,7 @@ void() ClientKill =
 		logfrag (self, self);
 #endif
 
-	self.real_frags = self.real_frags - 1;
+	if (!gungame) self.real_frags = self.real_frags - 1; //Not in gungame
 	if (teamplay & #TEAMPLAY_VAMPIRE) //WK
 		self.real_frags = self.real_frags - 1;
 

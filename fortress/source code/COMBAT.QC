@@ -253,7 +253,7 @@ void(entity targ, entity attacker) Killed =
 		killed_monsters = killed_monsters + 1;
 		WriteByte (#MSG_ALL, #SVC_KILLEDMONSTER);
 	}
-	if(gungame)
+	if(gungame)														// CV,EC,AF 8/1/20 - Function that controls weapon flow logic for gungame
 	{
 		if(attacker.health + 15 > 100)
 		{
@@ -263,15 +263,81 @@ void(entity targ, entity attacker) Killed =
 		{
 			attacker.health = attacker.health + 15;
 		}
-		if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+		if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+		{
+			attacker.current_weapon = #WEAP_LIGHTNING;
+			attacker.ammo_nails = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_LIGHTNING)
+		{
+			attacker.current_weapon = #WEAP_ROCKET_LAUNCHER;
+			attacker.ammo_cells = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+		{
+			attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
+			attacker.ammo_rockets = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_SUPER_SHOTGUN)
+		{
+			attacker.current_weapon = #WEAP_LIGHT_ASSAULT;
+			attacker.ammo_shells = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_LIGHT_ASSAULT)
+		{
+			attacker.current_weapon = #WEAP_SHOTGUN;
+			attacker.ammo_nails = 0;	
+		}
+		else if (attacker.current_weapon == #WEAP_SHOTGUN)
 		{
 			attacker.current_weapon = #WEAP_SNIPER_RIFLE;
-			attacker.ammo_rockets = 0;
+			attacker.ammo_nails = 0;
 		}
 		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
 		{
-			attacker.current_weapon = #WEAP_AXE;
+			attacker.current_weapon = #WEAP_RAILGUN;
+			attacker.ammo_cells = 0;
 		}
+		else if (attacker.current_weapon == #WEAP_RAILGUN)
+		{
+			attacker.current_weapon = #WEAP_LASERCANNON;
+			attacker.ammo_rockets = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_LASERCANNON)
+		{
+			attacker.current_weapon = #WEAP_AUTO_RIFLE;
+			attacker.ammo_shells = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_AUTO_RIFLE)
+		{
+			attacker.current_weapon = #WEAP_GRENADE_LAUNCHER;
+			attacker.ammo_nails = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_GRENADE_LAUNCHER)
+		{
+			attacker.current_weapon = #WEAP_NAILGUN;
+			attacker.ammo_cells = 0;
+		}
+//		else if (attacker.current_weapon == #WEAP_NAILGUN)			Placeholder templates for change from nailgun > grenade > final knife
+//		{
+//			attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
+//			attacker.ammo_rockets = 0;
+//		}
+//		else if (attacker.current_weapon == #WEAP_SUPER_SHOTGUN)
+//		{
+//			attacker.current_weapon = #WEAP_LIGHT_ASSAULT;
+//			attacker.ammo_shells = 0;
+//		}
+//		else if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+//		{
+//			attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
+//			attacker.ammo_rockets = 0;
+//		}
+//		else if (attacker.current_weapon == #WEAP_SUPER_SHOTGUN)
+//		{
+//			attacker.current_weapon = #WEAP_LIGHT_ASSAULT;
+//			attacker.ammo_shells = 0;
+//		}
 	}
 
 	ClientObituary(self, attacker);
@@ -775,7 +841,7 @@ void(entity targ, entity inflictor, entity attacker, float damage, float T_flags
 		//If they kill more than a certain number of friends in a certain period, they are booted
 		// Neo mode: don't count as teamkill when there's no Neo in the game
 		// WK Fixed bug with this always being off in Neo mode (it was !neo && !neoLives). Looks funny, though
-		if (!gungame &&!(neo && neoLives != world) && Teammate(targ, attacker) && targ != attacker && !(targ.penance_time > time) && !(targ.is_undercover) && prematch < time)
+		if (!(neo && neoLives != world) && Teammate(targ, attacker) && targ != attacker && !(targ.penance_time > time) && !(targ.is_undercover) && prematch < time)
 		{
 			//A teamkill
 			local string st;
