@@ -253,6 +253,26 @@ void(entity targ, entity attacker) Killed =
 		killed_monsters = killed_monsters + 1;
 		WriteByte (#MSG_ALL, #SVC_KILLEDMONSTER);
 	}
+	if(gungame)
+	{
+		if(attacker.health + 15 > 150)
+		{
+			attacker.health = 150;
+		}
+		else
+		{
+			attacker.health = attacker.health + 15;
+		}
+		if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+		{
+			attacker.current_weapon = #WEAP_SNIPER_RIFLE;
+			attacker.ammo_rockets = 0;
+		}
+		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
+		{
+			attacker.current_weapon = #WEAP_KNIFE;
+		}
+	}
 
 	ClientObituary(self, attacker);
 	
@@ -264,34 +284,6 @@ void(entity targ, entity attacker) Killed =
 
 	self = oself;
 
-	if(gungame)
-	{
-		if(attacker.health + 15 > 150)
-		{
-			attacker.health = 150;
-		}
-		else
-		{
-			attacker.health = attacker.health + 15;
-		}
-		if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
-		{
-			attacker.weapons_carried = attacker.weapons_carried - #WEAP_ASSAULT_CANNON;
-			attacker.weapons_carried = attacker.weapons_carried + #WEAP_ROCKET_LAUNCHER;
-		}
-		else if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
-		{
-			attacker.weapons_carried = attacker.weapons_carried - #WEAP_ROCKET_LAUNCHER;
-			attacker.weapons_carried = attacker.weapons_carried + #WEAP_SNIPER_RIFLE;
-		}
-		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
-		{
-			attacker.weapons_carried = attacker.weapons_carried - #WEAP_SNIPER_RIFLE;
-			attacker.weapons_carried = attacker.weapons_carried + #WEAP_KNIFE;
-		}
-		
-		
-	}
 };
 
 
