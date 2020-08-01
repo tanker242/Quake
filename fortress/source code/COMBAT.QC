@@ -255,9 +255,9 @@ void(entity targ, entity attacker) Killed =
 	}
 	if(gungame)
 	{
-		if(attacker.health + 15 > 150)
+		if(attacker.health + 15 > 100)
 		{
-			attacker.health = 150;
+			attacker.health = 100;
 		}
 		else
 		{
