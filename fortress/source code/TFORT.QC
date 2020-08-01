@@ -154,13 +154,13 @@ void() UseSpecialSkill =
 // If self.impulse == 1, change to Civilian class
 void() TeamFortress_ChangeClass =
 {
-	if (gungame && (self.impulse <= #PC_CUSTOM + #TF_CHANGEPC) && (self.impulse >= #PC_SCOUT + #TF_CHANGEPC))
+	//if (gungame && (self.impulse <= #PC_CUSTOM + #TF_CHANGEPC) && (self.impulse >= #PC_SCOUT + #TF_CHANGEPC))
+	if (self.impulse == #PC_SCOUT + #TF_CHANGE_PC || self.impulse == #PC_SNIPER + #TF_CHANGE_PC || self.impulse == #PC_SOLDIER + #TF_CHANGE_PC || self.impulse == #PC_DEMOMAN + #TF_CHANGE_PC || self.impulse == #PC_MEDIC + #TF_CHANGE_PC || self.impulse == #PC_HVYWEAP + #TF_CHANGE_PC || self.impulse == #PC_PYRO + #TF_CHANGE_PC || self.impulse == #PC_SPY + #TF_CHANGE_PC || self.impulse == #PC_ENGINEER + #TF_CHANGE_PC || self.impulse == #PC_RANDOM + #TF_CHANGE_PC || self.impulse == #PC_CUSTOM + #TF_CHANGE_PC)
 	{
-
 		sprint (self, #PRINT_HIGH, "You cannot change classes in GunGame\n");
-		return;
 		if(self.playerclass != #PC_CIVILIAN)
 			self.playerclass = #PC_CIVILIAN;
+		return;
 
 	}
 	local entity spot, te;
