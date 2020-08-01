@@ -583,7 +583,7 @@ void() Player_Menu =
 	}	 
 	
 	//WK ----------------
-	else if (!gungame && self.team_no == 0 && teamplay && (self.lives != 0)) //CV Adding !gungame to disable code when in gungame
+	/*else if (!gungame && self.team_no == 0 && teamplay && (self.lives != 0)) //CV Adding !gungame to disable code when in gungame
 	{
 		if (!gungame) {
 			self.current_menu = #MENU_TEAM;
@@ -603,7 +603,7 @@ void() Player_Menu =
 			}
 			self.gravity = 1;
 		}
-	}
+	}*/
 //WK Default to custom class gen - OfN - nope!
 	else if (self.playerclass == #PC_UNDEFINED && (self.lives != 0))
 	{
