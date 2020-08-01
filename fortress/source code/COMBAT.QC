@@ -263,6 +263,35 @@ void(entity targ, entity attacker) Killed =
 	self.th_die ();
 
 	self = oself;
+
+	if(gungame)
+	{
+		if(attacker.health + 15 > 150)
+		{
+			attacker.health = 150;
+		}
+		else
+		{
+			attacker.health = attacker.health + 15;
+		}
+		if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+		{
+			attacker.weapons_carried = attacker.weapons_carried - #WEAP_ASSAULT_CANNON;
+			attacker.weapons_carried = attacker.weapons_carried + #WEAP_ROCKET_LAUNCHER;
+		}
+		else if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+		{
+			attacker.weapons_carried = attacker.weapons_carried - #WEAP_ROCKET_LAUNCHER;
+			attacker.weapons_carried = attacker.weapons_carried + #WEAP_SNIPER_RIFLE;
+		}
+		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
+		{
+			attacker.weapons_carried = attacker.weapons_carried - #WEAP_SNIPER_RIFLE;
+			attacker.weapons_carried = attacker.weapons_carried + #WEAP_KNIFE;
+		}
+		
+		
+	}
 };
 
 
@@ -754,7 +783,7 @@ void(entity targ, entity inflictor, entity attacker, float damage, float T_flags
 		//If they kill more than a certain number of friends in a certain period, they are booted
 		// Neo mode: don't count as teamkill when there's no Neo in the game
 		// WK Fixed bug with this always being off in Neo mode (it was !neo && !neoLives). Looks funny, though
-		if (!(neo && neoLives != world) && Teammate(targ, attacker) && targ != attacker && !(targ.penance_time > time) && !(targ.is_undercover) && prematch < time)
+		if (!gungame &&!(neo && neoLives != world) && Teammate(targ, attacker) && targ != attacker && !(targ.penance_time > time) && !(targ.is_undercover) && prematch < time)
 		{
 			//A teamkill
 			local string st;
