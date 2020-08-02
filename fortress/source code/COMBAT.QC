@@ -358,8 +358,8 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					target.weapons_carried = #WEAP_ASSAULT_CANNON;
-					target.current_weapon = #WEAP_ASSAULT_CANNON;
+					targ.weapons_carried = #WEAP_ASSAULT_CANNON;
+					targ.current_weapon = #WEAP_ASSAULT_CANNON;
 				}
 				if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
 				{
