@@ -344,7 +344,20 @@ void(float targetteam) Admin_Assign =
 			self = oself;
 		}
 		// end Neo mod
+		if (!gungame) // Neo mode
+		{
+			oself = self;
 
+			self = self.admin_kick;
+			
+			// Detonate and kill all our stuff
+			if (self.has_holo > 0 ) RemoveHolo(self);
+			kill_my_demons();
+			DetonateMines(self);
+			DetonateAllGunsForced();	
+			TeamFortress_DropItems();
+			self = oself;
+		}
 		// Set the player's color
 		stuffcmd(self.admin_kick, "color ");
 		tc = TeamFortress_TeamGetColor(targetteam) - 1;
@@ -920,7 +933,7 @@ float(entity user, string str) Admin_Tell =
 		if (admin.is_connected)
 		{
 			numadmins = numadmins + 1;
-			sprint(admin,#PRINT_HIGH,"To Adminsç (",user.netname,"): ",st,"\n");
+			sprint(admin,#PRINT_HIGH,"To Adminsù (",user.netname,"): ",st,"\n");
 			stuffcmd(admin,"play misc/talk\n");
 		}
 		
@@ -935,7 +948,7 @@ float(entity user, string str) Admin_Tell =
 		if (admin.is_connected)
 		{
 			numadmins = numadmins + 1;
-			sprint(admin,#PRINT_HIGH,"To Adminsç (",user.netname,"): ",st,"\n");
+			sprint(admin,#PRINT_HIGH,"To Adminsù (",user.netname,"): ",st,"\n");
 			stuffcmd(admin,"play misc/talk\n");
 		}
 		
@@ -946,11 +959,11 @@ float(entity user, string str) Admin_Tell =
 
 	if (!user.admin_flag && numadmins > 0)
 	{
-		sprint(user,#PRINT_HIGH,"To Adminsç (",user.netname,"): ",st,"\n");
+		sprint(user,#PRINT_HIGH,"To Adminsù (",user.netname,"): ",st,"\n");
 		stuffcmd(user,"play misc/talk\n");
 	}
 
-	dprint("To Adminsç (");
+	dprint("To Adminsù (");
 	dprint(user.netname);
 	dprint("): ");
 	dprint(str);

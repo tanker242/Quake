@@ -348,8 +348,13 @@ void() Player_Menu =
 
 	if (self.current_menu == #MENU_INTRO)
 	{
-		Menu_Intro();
-		self.current_menu = #MENU_DEFAULT;
+		if(!gungame) Menu_Intro();
+		if(!gungame) self.current_menu = #MENU_DEFAULT;
+		else
+		{
+			self.gravity = 1;
+			ResetMenu();
+		}
 	}
 	else if (self.current_menu == #MENU_CLASSHELP)
 	{
@@ -576,7 +581,26 @@ void() Player_Menu =
 	{
 		Menu_Knocktation();
 	}	 
-	
+	else if (self.team_no == 0 && teamplay && (self.lives != 0))
+	{
+		if (gungame == 0) 
+		{
+			self.current_menu = #MENU_TEAM;
+			Menu_Team();
+		}
+		else 
+		{
+			TeamFortress_TeamSet(1); 
+			self.items = self.items + #IT_INVULNERABILITY;
+			self.invincible_time = 1;
+			self.invincible_finished = time + #RESPAWN_GUARD_TIME;
+			if (self.custom_speed > 300)
+			self.invincible_finished = self.invincible_finished - 1;			
+			if (self.custom_speed > 400)
+			self.invincible_finished = self.invincible_finished - 1;
+		}
+		self.gravity = 1;
+	}
 	//WK ----------------
 	/*else if (self.team_no == 0 && teamplay && (self.lives != 0))
 	{
@@ -599,18 +623,20 @@ void() Player_Menu =
 			self.gravity = 1;
 		}
 	}*/
+	
 //WK Default to custom class gen - OfN - nope!
 	else if (self.playerclass == #PC_UNDEFINED && (self.lives != 0))
 	{
 		//- OfN - stock_mode applies
-		if (stock_mode < 2) {
+		if (stock_mode < 2 && !gungame) {
 			self.current_menu = #MENU_CLASS;//-was commented
 			Menu_Class();//-was commented
 		}
 		else
 		{
-			self.impulse = #PC_CUSTOM + #TF_CHANGEPC; //-wasnt commented
+			self.impulse = #PC_CIVILIAN + #TF_CHANGEPC; //-wasnt commented
 			TeamFortress_ChangeClass();//-wasnt commented
+			
 		}
 	}
 	else

@@ -1853,9 +1853,9 @@ void(float inp) Menu_Special_Input =
 	if (inp == 9) {
 		CuTFMenuSound(#MENUSOUND_BROWSE);
 		self.current_menu = #MENU_ENGINEERING;
-		else self.current_menu = #MENU_GREN1;
+		self.current_menu = #MENU_GREN1;
 		Menu_Engineering();
-		else Menu_Gren1();	   
+		Menu_Gren1();	   
 	}
 	if (inp == 10) {
 		DropFromCustomClassGen();
@@ -2223,9 +2223,9 @@ void(float inp) Menu_Gren1_Input =
 	{
 		CuTFMenuSound(#MENUSOUND_BROWSE);
 		self.current_menu = #MENU_SPECIAL2;
-		else self.current_menu = #MENU_SPECIAL;
+		self.current_menu = #MENU_SPECIAL;
 		Menu_Special2();
-		else Menu_Special;		
+		Menu_Special;		
 	}
 	if (inp == 9)
 	{

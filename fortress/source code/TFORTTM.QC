@@ -482,7 +482,7 @@ void() TeamFortress_CheckTeamCheats =
 	tTopColor=stof(st);
 
 	// Have they changed color?
-	if (self.team_no > 0 && teamplay > 0)
+	if (self.team_no > 0 && teamplay > 0 && !gungame)
 	{
 	#ifndef QUAKE_WORLD
 		// if they're a spy, check to see if they've changed colors manually

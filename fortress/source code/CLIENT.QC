@@ -218,7 +218,8 @@ void() autoteam_think =
 //	if (!chris)
 		PrematchBegin();
 	
-	if (!gungame) toggleflags = toggleflags | #TFLAG_AUTOTEAM;
+	if (!gungame)
+	 	toggleflags = toggleflags | #TFLAG_AUTOTEAM;
 	
 	dremove(self);
 };
@@ -3474,12 +3475,12 @@ void() PlayerPostThink =
 
 	//	Display MOTD
 	// Sync this with tforthlp.qc and menu.qc
-	if (self.motd < #MOTD_FINISHED)
-		TeamFortress_MOTD();
-	else if (self.cheat_check == 0)
-		self.cheat_check = time + 10;
+//	if (self.motd < #MOTD_FINISHED)
+//		TeamFortress_MOTD();
+//	else if (self.cheat_check == 0)
+//S		self.cheat_check = time + 10;
 #ifdef STATUSBAR
-	else if (self.current_menu == 0 && time > self.StatusRefreshTime && self.StatusBarSize != 0)
+	/*else*/ if (self.current_menu == 0 && time > self.StatusRefreshTime && self.StatusBarSize != 0)
 	{
 		if (!ceasefire)
 		{

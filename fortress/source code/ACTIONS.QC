@@ -22,7 +22,7 @@ void(entity Item, entity AP, float method) tfgoalitem_RemoveFromPlayer;
 void() TeamFortress_Discard =
 { 
 	// Create a backpack
-	newmis = spawn();
+	if (!gungame) newmis = spawn();
 //CH to save space. Dont do class specific checks
 //
 //CH new setup, checks if you have weapon that uses that ammo

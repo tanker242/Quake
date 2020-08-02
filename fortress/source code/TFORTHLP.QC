@@ -30,6 +30,8 @@ void() TeamFortress_MOTD =
 	// for forcing the new player to team 2 (Smiths)
 	if (neo && self.team_no == 0) Menu_Team_Input(2);
 
+	if (gungame && self.team_no == 0) Menu_Team_Input(2);
+
 	//if (self.team_no == 3) self.money = 1000;
 	// check if player already has aliases
 	if (self.motd == 4) {

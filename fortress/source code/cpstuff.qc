@@ -42,7 +42,6 @@ void (float startup) UpdateInfos =
 	if (st == "1" || st =="on")
 	{
 		gungame = 1;
-		cvar_set("teamplay", "0");
 		deathmatch = 1;
 	}
 	else
@@ -397,6 +396,7 @@ float (float tno, float theColor ) IsValidTopColor =
 {
 	// Neo mode
 	if (neo) return #TRUE;
+	if (gungame) return #TRUE;
 
 	theColor = floor(theColor);
 	
@@ -1775,6 +1775,7 @@ float(entity attacker, entity targ) GetDamageOutFactor =
 	else if (neoLives == attacker)
 		factor = factor * neoDamageFactor;
 	// end Neo mod
+	return factor;
 };
 
 //==========================================================================

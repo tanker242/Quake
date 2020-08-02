@@ -12,6 +12,7 @@ All the functions pertaining to killing people
 void(string gibname, float dm, float makecool, float gibskin, float gibkgs, float randorg) ThrowGib;
 void() T_MissileTouch;
 void() info_player_start;
+void() TeamFortress_Discard;
 void(entity targ, entity attacker) ClientObituary;
 
 // TeamFortress Prototypes
@@ -186,7 +187,203 @@ void(entity targ, entity attacker) Killed =
 			{
 				RPrint(" (without expbody) ");
 			}
-			RPrint("\n");		   
+			RPrint("\n");	
+			
+			if (gungame) 
+			{
+/*
+			//	Weapons and ammo types for reference //
+				WEAP_HOOK				1
+				#define WEAP_MEDIKIT			4
+				#define WEAP_SPANNER			8
+				#define WEAP_AXE				16
+				#define WEAP_SNIPER_RIFLE		32
+				#define WEAP_AUTO_RIFLE 		64
+				#define WEAP_SHOTGUN			128
+				#define WEAP_SUPER_SHOTGUN		256
+				#define WEAP_NAILGUN			512
+				#define WEAP_LIGHT_ASSAULT		1024
+				#define WEAP_GRENADE_LAUNCHER		2048
+				#define WEAP_FLAMETHROWER		4096
+				#define WEAP_ROCKET_LAUNCHER		8192
+				#define WEAP_INCENDIARY 		16384
+				#define WEAP_ASSAULT_CANNON 	32768
+				#define WEAP_LIGHTNING			65536
+				#define WEAP_DAEDALUS			131072
+				//#define WEAP_DETPACK			131072 DONT MAKE ANY AMMOTYPES USE THIS NUMBER!
+				#define WEAP_TRANQ			262144
+				#define WEAP_RAILGUN			524288
+				#define WEAP_MAUSER 		1048576
+				#define WEAP_AIRF				2097152 //- OfN - airfist
+				#define WEAP_LASERCANNON		4194304 //- OfN - LASER CANNON
+				#define WEAP_SNG			
+
+				#define BUILD_DISPENSER_MAX_SHELLS	400
+				#define BUILD_DISPENSER_MAX_NAILS	600
+				#define BUILD_DISPENSER_MAX_ROCKETS 300
+				#define BUILD_DISPENSER_MAX_CELLS
+*/
+				if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					//attacker.ammo_shot = 0;					//Sets ammo for current weapon to 0
+					TeamFortress_Discard();						//Makes attacker discard any weapons with 0 ammo
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_LIGHTNING;	//Give attacker the ammo they will need for their next weapon
+					attacker.current_weapon = #WEAP_LIGHTNING;	//Give attacker new weapon
+				}
+				if (attacker.current_weapon == #WEAP_LIGHTNING)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_SNIPER_RIFLE;
+					attacker.current_weapon = #WEAP_SNIPER_RIFLE;
+				}
+				if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_ROCKET_LAUNCHER;
+					attacker.current_weapon = #WEAP_ROCKET_LAUNCHER;
+				}
+				if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_LASERCANNON;
+					attacker.current_weapon = #WEAP_LASERCANNON;
+				}
+				if (attacker.current_weapon == #WEAP_LASERCANNON)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_SUPER_SHOTGUN;
+					attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
+				}
+				if (attacker.current_weapon == #WEAP_SUPER_SHOTGUN)
+				{
+					attacker.ammo_shells = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_SHOTGUN;
+					attacker.current_weapon = #WEAP_SHOTGUN;
+				}
+				if (attacker.current_weapon == #WEAP_SHOTGUN)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_GRENADE_LAUNCHER;
+					attacker.current_weapon = #WEAP_GRENADE_LAUNCHER;
+				}
+				if (attacker.current_weapon == #WEAP_GRENADE_LAUNCHER)
+				{
+					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150; 
+					attacker.weapons_carried = #WEAP_NAILGUN;
+					attacker.current_weapon = #WEAP_NAILGUN;
+				}
+				if (attacker.current_weapon == #WEAP_NAILGUN)
+				{
+					attacker.ammo_nails = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_shells = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					attacker.weapons_carried = #WEAP_RAILGUN;
+					attacker.current_weapon = #WEAP_RAILGUN;
+				}
+				if (attacker.current_weapon == #CUTF_KNIFE)
+				{
+					attacker.ammo_nails = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_shells = 0;
+					TeamFortress_Discard();
+					attacker.ammo_rockets = 150;
+					attacker.ammo_shells = 150;
+					attacker.ammo_nails = 150;
+					attacker.ammo_cells = 150;
+					target.weapons_carried = #WEAP_ASSAULT_CANNON;
+					target.current_weapon = #WEAP_ASSAULT_CANNON;
+				}
+				if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+				{
+					TeamFortress_TeamShowScores(1,0,0);
+					TeamFortress_TeamGetWinner();
+
+					local entity te;
+					// Stop everyone
+					te = find (world, classname, "player");
+					while (te)
+					{
+						te.takedamage = 0;
+						te.movetype = #MOVETYPE_NONE;
+						te.velocity = '0 0 0';
+						te.avelocity = '0 0 0';
+
+						te = find(te, classname, "player");
+					}
+
+					te = spawn();
+					te.nextthink = time + 5; // Allow 5 secs to read the scores
+					te.think = execute_changelevel;
+				}
+			}
 		}
 		else
 		{
@@ -227,6 +424,35 @@ void(entity targ, entity attacker) Killed =
 			return; 
 		}
 	}
+/*
+	if(gungame)
+    {
+        if(attacker.health + 15 > 150)
+        {
+            attacker.health = 150;
+        }
+        else
+        {
+            attacker.health = attacker.health + 15;
+		}
+		
+
+        if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+        {
+            attacker.weapons_carried = attacker.weapons_carried - #WEAP_ASSAULT_CANNON;
+            attacker.weapons_carried = attacker.weapons_carried + #WEAP_ROCKET_LAUNCHER;
+        }
+        else if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+        {
+            attacker.weapons_carried = attacker.weapons_carried - #WEAP_ROCKET_LAUNCHER;
+            attacker.weapons_carried = attacker.weapons_carried + #WEAP_SNIPER_RIFLE;
+        }
+        else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
+        {
+            attacker.weapons_carried = attacker.weapons_carried - #WEAP_SNIPER_RIFLE;
+            attacker.weapons_carried = attacker.weapons_carried + #WEAP_KNIFE;
+        }
+	}*/
 
 	oself = self;
 	self = targ;
@@ -707,6 +933,34 @@ void(entity targ, entity inflictor, entity attacker, float damage, float T_flags
 		targ.armorvalue = 0;
 	}
 
+	/*if(gungame)
+    {
+        if(attacker.health + 15 > 150)
+        {
+            attacker.health = 150;
+        }
+        else
+        {
+            attacker.health = attacker.health + 15;
+        }
+       /* if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+        {
+            attacker.weapons_carried = attacker.weapons_carried; //- #WEAP_ASSAULT_CANNON;
+            attacker.weapons_carried = attacker.weapons_carried; //+ #WEAP_ROCKET_LAUNCHER;
+        }
+        if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
+        {
+            attacker.weapons_carried = attacker.weapons_carried - #WEAP_ROCKET_LAUNCHER;
+            attacker.weapons_carried = attacker.weapons_carried + #WEAP_SNIPER_RIFLE;
+        }
+        else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
+        {
+            attacker.weapons_carried = attacker.weapons_carried; //- #WEAP_SNIPER_RIFLE;
+            attacker.weapons_carried = attacker.weapons_carried; //+ #WEAP_KNIFE;
+		}
+	}*/
+
+
 	if (targ.health < 1 && targ.health > 0) //WK Stop the scoreboard coming up
 		targ.health = 1;
 		
@@ -754,7 +1008,7 @@ void(entity targ, entity inflictor, entity attacker, float damage, float T_flags
 		//If they kill more than a certain number of friends in a certain period, they are booted
 		// Neo mode: don't count as teamkill when there's no Neo in the game
 		// WK Fixed bug with this always being off in Neo mode (it was !neo && !neoLives). Looks funny, though
-		if (!(neo && neoLives != world) && Teammate(targ, attacker) && targ != attacker && !(targ.penance_time > time) && !(targ.is_undercover) && prematch < time)
+		if (!(neo && neoLives != world) && Teammate(targ, attacker) && targ != attacker && !(targ.penance_time > time) && !(targ.is_undercover) && prematch < time && !gungame)
 		{
 			//A teamkill
 			local string st;

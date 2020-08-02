@@ -201,7 +201,7 @@ void() TeamFortress_ChangeClass =
 	}
 
 	// players must join a team, if teamplay is on
-	if (teamplay && self.team_no == 0) 
+	if (teamplay && self.team_no == 0 && !gungame) 
 	{
 		sprint(self, #PRINT_HIGH, "You must join a team first. \n");
 		return;
