@@ -399,7 +399,7 @@ void(entity targ, entity attacker) Killed =
 			}	
 		}
 	
-		else
+		/*else
 			{
 				TeamFortress_TeamShowScores(1,0,0);
 				winners = TeamFortress_TeamGetWinner();
@@ -422,7 +422,7 @@ void(entity targ, entity attacker) Killed =
 		
 				dremove(Goal);
 				return;
-			}
+			}*/
 //		else if (attacker.current_weapon == #WEAP_NAILGUN)			Placeholder templates for change from nailgun > grenade > final knife
 //		{
 //			attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
