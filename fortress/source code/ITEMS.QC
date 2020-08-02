@@ -1900,6 +1900,7 @@ DropBackpack
 */
 void() DropBackpack =
 {
+	if(!gungame){
 	if (!(self.ammo_shells + self.ammo_nails + self.ammo_rockets + self.ammo_cells))
 		return; // nothing in it
 
@@ -1930,6 +1931,7 @@ void() DropBackpack =
 	
 	newmis.nextthink = time + 20;	// remove after 2 minutes
 	newmis.think = SUB_Remove;
+	}
 };
 
 
