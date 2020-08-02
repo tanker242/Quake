@@ -231,12 +231,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_nails = 0;
 					//attacker.ammo_shot = 0;					//Sets ammo for current weapon to 0
 					TeamFortress_Discard();						//Makes attacker discard any weapons with 0 ammo
+					attacker.weapons_carried = #WEAP_LIGHTNING;	//Give attacker the ammo they will need for their next weapon
+					attacker.current_weapon = #WEAP_LIGHTNING;	//Give attacker new weapon
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_LIGHTNING;	//Give attacker the ammo they will need for their next weapon
-					attacker.current_weapon = #WEAP_LIGHTNING;	//Give attacker new weapon
+					
 				}
 				if (attacker.current_weapon == #WEAP_LIGHTNING)
 				{
@@ -245,12 +246,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_cells = 0;
 					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_SNIPER_RIFLE;
+					attacker.current_weapon = #WEAP_SNIPER_RIFLE;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_SNIPER_RIFLE;
-					attacker.current_weapon = #WEAP_SNIPER_RIFLE;
+					
 				}
 				if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
 				{
@@ -259,12 +261,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_cells = 0;
 					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_ROCKET_LAUNCHER;
+					attacker.current_weapon = #WEAP_ROCKET_LAUNCHER;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_ROCKET_LAUNCHER;
-					attacker.current_weapon = #WEAP_ROCKET_LAUNCHER;
+					
 				}
 				if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
 				{
@@ -273,12 +276,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_cells = 0;
 					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_LASERCANNON;
+					attacker.current_weapon = #WEAP_LASERCANNON;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_LASERCANNON;
-					attacker.current_weapon = #WEAP_LASERCANNON;
+					
 				}
 				if (attacker.current_weapon == #WEAP_LASERCANNON)
 				{
@@ -287,23 +291,28 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_cells = 0;
 					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_SUPER_SHOTGUN;
+					attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_SUPER_SHOTGUN;
-					attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
+					
 				}
 				if (attacker.current_weapon == #WEAP_SUPER_SHOTGUN)
 				{
 					attacker.ammo_shells = 0;
+					attacker.ammo_rockets = 0;
+					attacker.ammo_cells = 0;
+					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_SHOTGUN;
+					attacker.current_weapon = #WEAP_SHOTGUN;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_SHOTGUN;
-					attacker.current_weapon = #WEAP_SHOTGUN;
+					
 				}
 				if (attacker.current_weapon == #WEAP_SHOTGUN)
 				{
@@ -312,12 +321,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_cells = 0;
 					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_GRENADE_LAUNCHER;
+					attacker.current_weapon = #WEAP_GRENADE_LAUNCHER;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_GRENADE_LAUNCHER;
-					attacker.current_weapon = #WEAP_GRENADE_LAUNCHER;
+					
 				}
 				if (attacker.current_weapon == #WEAP_GRENADE_LAUNCHER)
 				{
@@ -326,12 +336,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_cells = 0;
 					attacker.ammo_nails = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_NAILGUN;
+					attacker.current_weapon = #WEAP_NAILGUN;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150; 
-					attacker.weapons_carried = #WEAP_NAILGUN;
-					attacker.current_weapon = #WEAP_NAILGUN;
+					
 				}
 				if (attacker.current_weapon == #WEAP_NAILGUN)
 				{
@@ -340,12 +351,13 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_rockets = 0;
 					attacker.ammo_shells = 0;
 					TeamFortress_Discard();
+					attacker.weapons_carried = #WEAP_RAILGUN;
+					attacker.current_weapon = #WEAP_RAILGUN;
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					attacker.weapons_carried = #WEAP_RAILGUN;
-					attacker.current_weapon = #WEAP_RAILGUN;
+					
 				}
 				if (attacker.current_weapon == #CUTF_KNIFE)
 				{
@@ -354,14 +366,15 @@ void(entity targ, entity attacker) Killed =
 					attacker.ammo_rockets = 0;
 					attacker.ammo_shells = 0;
 					TeamFortress_Discard();
+					targ.weapons_carried = #WEAP_ASSAULT_CANNON;
+					targ.current_weapon = #WEAP_ASSAULT_CANNON; //
 					attacker.ammo_rockets = 150;
 					attacker.ammo_shells = 150;
 					attacker.ammo_nails = 150;
 					attacker.ammo_cells = 150;
-					targ.weapons_carried = #WEAP_ASSAULT_CANNON;
-					targ.current_weapon = #WEAP_ASSAULT_CANNON; //
+					
 				}
-				if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
+				if (attacker.current_weapon == #RAILGUN)
 				{
 					TeamFortress_TeamShowScores(1,0,0);
 					TeamFortress_TeamGetWinner();
