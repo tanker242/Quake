@@ -34,3 +34,14 @@ soldier
 kill
 quit
 connect localhost
+rcon_password foobar
+rcon map well6
+rcon localinfo gungame 0
+rcon map well6
+rcon map well6
+rcon localinfo gungame 0
+rcon map well6
+rcon_password foobar
+rcon status
+rcon localinfo gungame 0
+rcon map well6
