@@ -2482,7 +2482,7 @@ void() TeamFortress_SetEquipment =
 		// set the weapon icons on the status bar
 		self.items = self.items | #IT_SHOTGUN | #IT_GRENADE_LAUNCHER | #IT_ROCKET_LAUNCHER;
 	}
-	else if ( self.playerclass == #PC_CIVILIAN && !gungame)
+	else if ( self.playerclass == #PC_CIVILIAN)
 	{
 		self.weapons_carried = self.weapons_carried | #PC_CIVILIAN_WEAPONS;
 		self.ammo_rockets = #PC_CIVILIAN_INITAMMO_ROCKET;
