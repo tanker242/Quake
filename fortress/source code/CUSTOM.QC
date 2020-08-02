@@ -128,6 +128,8 @@ void() DropToCustomClassGen =
 	self.maxammo_medikit = 0;
 	self.maxammo_detpack = 0;
 	self.ammo_c4det = 0;
+
+	sprint(self, #PRINT_HIGH, "Test");
 	
 	self.demon_one = world; //SB - this tells us who our demon is for easy reference
 	self.demon_two = world; //- OfN-  Used for hacker job, target building and for timer (% on sbar)	self.demon_three = world;

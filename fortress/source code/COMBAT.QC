@@ -253,6 +253,9 @@ void(entity targ, entity attacker) Killed =
 		killed_monsters = killed_monsters + 1;
 		WriteByte (#MSG_ALL, #SVC_KILLEDMONSTER);
 	}
+	local float winners;
+	local entity te;
+	local entity Goal;
 	if(gungame)														// CV,EC,AF 8/1/20 - Function that controls weapon flow logic for gungame
 	{
 		if(attacker.health + 15 > 100)
@@ -266,47 +269,54 @@ void(entity targ, entity attacker) Killed =
 		if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
 		{
 			attacker.current_weapon = #WEAP_LIGHTNING;
-			attacker.ammo_nails = 0;
+			attacker.ammo_shells = 0;
 		}
 		else if (attacker.current_weapon == #WEAP_LIGHTNING)
 		{
 			attacker.current_weapon = #WEAP_ROCKET_LAUNCHER;
 			attacker.ammo_cells = 0;
+			attacker.ammo_shells = 30;
 		}
 		else if (attacker.current_weapon == #WEAP_ROCKET_LAUNCHER)
 		{
 			attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
 			attacker.ammo_rockets = 0;
+			attacker.ammo_cells = 50;
 		}
 		else if (attacker.current_weapon == #WEAP_SUPER_SHOTGUN)
 		{
 			attacker.current_weapon = #WEAP_LIGHT_ASSAULT;
 			attacker.ammo_shells = 0;
+			attacker.ammo_rockets = 30;
 		}
 		else if (attacker.current_weapon == #WEAP_LIGHT_ASSAULT)
 		{
 			attacker.current_weapon = #WEAP_SHOTGUN;
-			attacker.ammo_nails = 0;	
+			attacker.ammo_nails = 0;
+			attacker.ammo_shells = 30;
 		}
 		else if (attacker.current_weapon == #WEAP_SHOTGUN)
 		{
 			attacker.current_weapon = #WEAP_SNIPER_RIFLE;
-			attacker.ammo_nails = 0;
-		}
-		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
-		{
-			attacker.current_weapon = #WEAP_RAILGUN;
-			attacker.ammo_cells = 0;
+			attacker.ammo_shells = 0;
+			attacker.ammo_nails = 50;
 		}
 		else if (attacker.current_weapon == #WEAP_RAILGUN)
 		{
 			attacker.current_weapon = #WEAP_LASERCANNON;
-			attacker.ammo_rockets = 0;
+			attacker.ammo_nails = 0;
+			attacker.ammo_shells = 30;
+		}
+		else if (attacker.current_weapon == #WEAP_SNIPER_RIFLE)
+		{
+			attacker.current_weapon = #WEAP_RAILGUN;
+			attacker.ammo_shells = 0;
+			attacker.ammo_nails = 50;
 		}
 		else if (attacker.current_weapon == #WEAP_LASERCANNON)
 		{
 			attacker.current_weapon = #WEAP_AUTO_RIFLE;
-			attacker.ammo_shells = 0;
+			attacker.ammo_cells = 0;
 		}
 		else if (attacker.current_weapon == #WEAP_AUTO_RIFLE)
 		{
@@ -318,6 +328,101 @@ void(entity targ, entity attacker) Killed =
 			attacker.current_weapon = #WEAP_NAILGUN;
 			attacker.ammo_cells = 0;
 		}
+		else if (attacker.current_weapon == #WEAP_NAILGUN)
+		{
+			attacker.no_grenades_1 = 3;
+			attacker.tp_grenades_1 = #GR_TYPE_NORMAL;
+			attacker.ammo_nails = 0;
+		}
+		else if (attacker.current_weapon == #CUTF_KNIFE)
+		{
+			if (self.current_weapon == #WEAP_LIGHTNING)
+			{
+				self.current_weapon = #WEAP_ASSAULT_CANNON;
+				self.ammo_nails = 50;
+			}
+			else if (self.current_weapon == #WEAP_ROCKET_LAUNCHER)
+			{
+				self.ammo_cells = 50;
+				self.current_weapon = #WEAP_LIGHTNING;
+			}
+			else if (self.current_weapon == #WEAP_SUPER_SHOTGUN)
+			{
+				self.current_weapon = #WEAP_ROCKET_LAUNCHER;
+				self.ammo_rockets = 24;
+			}
+			else if (self.current_weapon == #WEAP_LIGHT_ASSAULT)
+			{
+				self.current_weapon = #WEAP_SUPER_SHOTGUN;
+				self.ammo_shells = 30;
+			}
+			else if (self.current_weapon == #WEAP_SHOTGUN)
+			{
+				self.current_weapon = #WEAP_LIGHT_ASSAULT;
+				self.ammo_nails = 50;	
+			}
+			else if (self.current_weapon == #WEAP_RAILGUN)
+			{
+				self.current_weapon = #WEAP_SNIPER_RIFLE;
+				self.ammo_shells = 30;
+			}
+			else if (self.current_weapon == #WEAP_SNIPER_RIFLE)
+			{
+				self.current_weapon = #WEAP_SHOTGUN;
+				self.ammo_shells = 30;
+			}
+			else if (self.current_weapon == #WEAP_LASERCANNON)
+			{
+				self.current_weapon = #WEAP_RAILGUN;
+				self.ammo_nails = 30;
+			}
+			else if (self.current_weapon == #WEAP_AUTO_RIFLE)
+			{
+				self.current_weapon = #WEAP_LASERCANNON;
+				self.ammo_cells = 30;
+			}
+			else if (self.current_weapon == #WEAP_GRENADE_LAUNCHER)
+			{
+				self.current_weapon = #WEAP_AUTO_RIFLE;
+				self.ammo_shells = 50;
+			}
+			else if (self.current_weapon == #WEAP_NAILGUN)
+			{
+				self.current_weapon = #WEAP_GRENADE_LAUNCHER;
+				self.ammo_rockets = 24;
+			}
+			else if (self.tp_grenades_1 = #GR_TYPE_NORMAL)
+			{
+				self.no_grenades_1 = 0;
+				self.tp_grenades_1 = 0;
+				self.current_weapon =#WEAP_NAILGUN;
+			}	
+		}
+	
+		else
+			{
+				TeamFortress_TeamShowScores(1,0,0);
+				winners = TeamFortress_TeamGetWinner();
+		
+				// Stop everyone
+				te = find (world, classname, "player");
+				while (te)
+				{
+					te.takedamage = 0;
+					te.movetype = #MOVETYPE_NONE;
+					te.velocity = '0 0 0';
+					te.avelocity = '0 0 0';
+		
+					te = find(te, classname, "player");
+				}
+		
+				te = spawn();
+				te.nextthink = time + 5; // Allow 5 secs to read the scores
+				te.think = execute_changelevel;
+		
+				dremove(Goal);
+				return;
+			}
 //		else if (attacker.current_weapon == #WEAP_NAILGUN)			Placeholder templates for change from nailgun > grenade > final knife
 //		{
 //			attacker.current_weapon = #WEAP_SUPER_SHOTGUN;
