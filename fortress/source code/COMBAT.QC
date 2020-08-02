@@ -268,8 +268,8 @@ void(entity targ, entity attacker) Killed =
 		}
 		if (attacker.current_weapon == #WEAP_ASSAULT_CANNON)
 		{
-			attacker.current_weapon = #WEAP_LIGHTNING;
 			attacker.ammo_shells = 0;
+			attacker.current_weapon = #WEAP_LIGHTNING;
 		}
 		else if (attacker.current_weapon == #WEAP_LIGHTNING)
 		{
@@ -334,7 +334,7 @@ void(entity targ, entity attacker) Killed =
 			attacker.tp_grenades_1 = #GR_TYPE_NORMAL;
 			attacker.ammo_nails = 0;
 		}
-		else if (attacker.current_weapon == #CUTF_KNIFE)
+		else if (attacker.current_weapon == #WEAP_AXE)
 		{
 			if (self.current_weapon == #WEAP_LIGHTNING)
 			{

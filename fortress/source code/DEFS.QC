@@ -2196,7 +2196,7 @@ float		rj; 				// Rocket Jump Modifier
 #define PC_CIVILIAN_GRENADE_INIT_2		0	 
 #define PC_CIVILIAN_TF_ITEMS			0 
 #define PC_CIVILIAN_JOB 				0
-#define PC_CIVILIAN_CUTFITEMS			#CUTF_KNIFE
+#define PC_CIVILIAN_CUTFITEMS			0
 
 
 /*==========================================================================*/
